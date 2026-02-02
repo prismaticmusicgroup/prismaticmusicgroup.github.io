@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Name | Links</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="All my important links in one place." />
+
+  <!-- Optional: Google Font (you can remove if you want system fonts only) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #050816;
+      --card-bg: rgba(15, 23, 42, 0.92);
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --accent: #7c3aed;
+      --accent-soft: rgba(124, 58, 237, 0.18);
+      --accent-hover: #a855f7;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --text-soft: #6b7280;
+      --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.9);
+      --radius-xl: 1.75rem;
+      --radius-lg: 999px;
+      --radius-md: 1rem;
+      --space: 1.25rem;
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #4c1d95 0, transparent 55%),
+        radial-gradient(circle at bottom right, #0f766e 0, transparent 55%),
+        var(--bg-alt);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    main {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem 1.75rem 1.9rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top,
+        rgba(124, 58, 237, 0.2),
+        transparent 60%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      padding: 2px;
+      background:
+        conic-gradient(from 140deg,
+          rgba(124, 58, 237, 0.1),
+          rgba(45, 212, 191, 0.55),
+          rgba(124, 58, 237, 0.1));
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #f472b6, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: #f9fafb;
+      border: 2px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .profile-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .name-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .name {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .tag-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 0.17rem 0.5rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(124, 58, 237, 0.4);
+      color: #f9fafb;
+      white-space: nowrap;
+    }
+
+    .handle {
+      font-size: 0.85rem;
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+
+    .handle:hover {
+      text-decoration: underline;
+    }
+
+    .bio {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.2rem 0 0.8rem;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-hover);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform var(--transition-fast),
+                  box-shadow var(--transition-fast),
+                  border-color var(--transition-fast),
+                  background var(--transition-fast);
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-muted);
+      transition: fill var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .social-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(191, 219, 254, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.85);
+    }
+
+    .social-link:hover svg {
+      fill: #e5e7eb;
+      transform: scale(1.06);
+    }
+
+    .links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+
+    .link-item a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 0.95rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at top left,
+                    rgba(15, 23, 42, 0.96),
+                    rgba(15, 23, 42, 0.98));
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: transform var(--transition-fast),
+                  box-shadow var(--transition-fast),
+                  border-color var(--transition-fast),
+                  background var(--transition-fast);
+    }
+
+    .link-main {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .link-label {
+      display: block;
+    }
+
+    .link-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
+    .link-icon-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      flex-shrink: 0;
+    }
+
+    .link-icon-circle svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--accent-hover);
+    }
+
+    .link-chevron {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .link-chevron svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--text-soft);
+      transition: transform var(--transition-fast), fill var(--transition-fast);
+    }
+
+    .link-item a:hover {
+      transform: translateY(-1px);
+      border-color: rgba(191, 219, 254, 0.9);
+      background:
+        linear-gradient(135deg,
+          rgba(15, 23, 42, 0.97),
+          rgba(46, 16, 101, 0.98));
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.95);
+    }
+
+    .link-item a:hover .link-chevron svg {
+      transform: translateX(2px);
+      fill: #e5e7eb;
+    }
+
+    .link-item a:hover .link-icon-circle {
+      border-color: rgba(129, 140, 248, 0.8);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.72rem;
+      color: var(--text-soft);
+      margin-top: 0.4rem;
+    }
+
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      background: rgba(22, 163, 74, 0.16);
+      color: #bbf7d0;
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.5rem 1.25rem 1.7rem;
+        border-radius: 1.35rem;
+      }
+      .profile {
+        align-items: flex-start;
+      }
+      .avatar-wrapper {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card">
+      <div class="card-inner">
+        <!-- Profile header -->
+        <header class="profile">
+          <div class="avatar-wrapper">
+            <!-- Use your initials here -->
+            <div class="avatar">YZ</div>
+          </div>
+          <div class="profile-text">
+            <div class="name-row">
+              <h1 class="name">Your Name</h1>
+              <span class="tag-pill">Creator</span>
+            </div>
+            <a href="https://your-website-or-main-platform.com"
+               class="handle"
+               target="_blank"
+               rel="noopener">
+              @yourhandle
+            </a>
+            <p class="bio">
+              Short one-liner about who you are and what you do.
+              Keep it crisp but specific.
+            </p>
+            <div class="meta-row">
+              <span class="meta-pill">
+                <span class="meta-dot"></span>
+                Based in Chicago, IL
+              </span>
+              <span class="meta-pill">
+                 links / music / work
+              </span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Social icons row -->
+        <div class="social-row">
+          <!-- Instagram -->
+          <a class="social-link"
+             href="https://instagram.com/yourhandle"
+             target="_blank"
+             rel="noopener"
+             aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3a5 5 0 1 0 .001 10.001A5 5 0 0 0 12 7zm0 2a3 3 0 1 1-.001 6.001A3 3 0 0 1 12 9zm5.25-3.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"/>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a class="social-link"
+             href="https://x.com/yourhandle"
+             target="_blank"
+             rel="noopener"
+             aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4h4l4 5.5L16.5 4H20l-6.2 8 6.2 8h-4l-4-5.5L7.5 20H4l6.2-8z"/>
+            </svg>
+          </a>
+
+          <!-- GitHub -->
+          <a class="social-link"
+             href="https://github.com/your-username"
+             target="_blank"
+             rel="noopener"
+             aria-label="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.088 3.292 9.395 7.868 10.918.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.962-3.201.695-3.877-1.543-3.877-1.543-.523-1.328-1.277-1.682-1.277-1.682-1.044-.714.079-.699.079-.699 1.155.081 1.763 1.187 1.763 1.187 1.027 1.76 2.695 1.252 3.352.957.104-.744.402-1.252.73-1.54-2.555-.291-5.238-1.277-5.238-5.682 0-1.255.45-2.283 1.187-3.087-.119-.291-.515-1.463.112-3.05 0 0 .967-.31 3.17 1.179a10.97 10.97 0 0 1 2.886-.388c.979.005 1.966.132 2.886.388 2.2-1.489 3.165-1.179 3.165-1.179.63 1.587.235 2.759.116 3.05.74.804 1.185 1.832 1.185 3.087 0 4.417-2.689 5.387-5.253 5.672.413.355.78 1.058.78 2.133 0 1.54-.014 2.78-.014 3.159 0 .309.205.668.79.554C20.213 21.39 23.5 17.084 23.5 12 23.5 5.648 18.352.5 12 .5z"/>
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a class="social-link"
+             href="mailto:you@example.com"
+             aria-label="Email">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.217l8 5.333 8-5.333V6H4zm0 2.883V18h16V8.883l-7.445 4.966a2 2 0 0 1-2.11 0L4 8.883z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Main links list -->
+        <ul class="links">
+          <li class="link-item">
+            <a href="https://your-main-thing.com"
+               target="_blank"
+               rel="noopener">
+              <div class="link-main">
+                <div class="link-icon-circle">
+                  <!-- Link icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M10.59 13.41a1 1 0 0 1 0-1.41l2.59-2.59H11a1 1 0 0 1 0-2h5a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0v-2.18l-2.59 2.59a1 1 0 0 1-1.41 0z"/>
+                    <path d="M5 6a3 3 0 0 1 3-3h5a1 1 0 0 1 0 2H8a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-5a1 1 0 1 1 2 0v5a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V6z"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="link-label">Latest Project / Portfolio</span>
+                  <span class="link-sub">Case studies, work samples &amp; more</span>
+                </div>
+              </div>
+              <span class="link-chevron">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 5a1 1 0 0 1 1.707-.707l6 6a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 9 17.293L14.293 12 9 6.707A1 1 0 0 1 9 5z"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+
+          <li class="link-item">
+            <a href="https://your-music-or-creative-link.com"
+               target="_blank"
+               rel="noopener">
+              <div class="link-main">
+                <div class="link-icon-circle">
+                  <!-- Play / music icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 18.5a3.5 3.5 0 1 1-2-3.163V6a1 1 0 0 1 .757-.97l8-2A1 1 0 0 1 17 4v9.5a3.5 3.5 0 1 1-2-3.163V6.309l-6 1.5v8.528A3.5 3.5 0 0 1 9 18.5z"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="link-label">Listen to My Music</span>
+                  <span class="link-sub">Spotify / SoundCloud / Mixes</span>
+                </div>
+              </div>
+              <span class="link-chevron">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 5a1 1 0 0 1 1.707-.707l6 6a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 9 17.293L14.293 12 9 6.707A1 1 0 0 1 9 5z"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+
+          <li class="link-item">
+            <a href="https://calendly.com/your-link"
+               target="_blank"
+               rel="noopener">
+              <div class="link-main">
+                <div class="link-icon-circle">
+                  <!-- Calendar icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1zm13 9H4v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8zM4 7v2h17V7a1 1 0 0 0-1-1h-1v1a1 1 0 1 1-2 0V6H8v1a1 1 0 1 1-2 0V6H5a1 1 0 0 0-1 1z"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="link-label">Book a Call</span>
+                  <span class="link-sub">Grab 15–30 minutes with me</span>
+                </div>
+              </div>
+              <span class="link-chevron">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 5a1 1 0 0 1 1.707-.707l6 6a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 9 17.293L14.293 12 9 6.707A1 1 0 0 1 9 5z"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+
+          <li class="link-item">
+            <a href="https://newsletter-or-blog.com"
+               target="_blank"
+               rel="noopener">
+              <div class="link-main">
+                <div class="link-icon-circle">
+                  <!-- Article / doc icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h9.586A3 3 0 0 0 19 20.586L20.586 19A3 3 0 0 0 21.5 16.879V7.828a3 3 0 0 0-.879-2.121L16.293.879A3 3 0 0 0 14.172 0H6zm0 2h8v4a2 2 0 0 0 2 2h4v8.879a1 1 0 0 1-.293.707L18.586 20A1 1 0 0 1 17.879 20.293L16 22.172V21a1 1 0 0 0-1-1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm3 6a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H9zm-1 4a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1z"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="link-label">Read My Writing</span>
+                  <span class="link-sub">Newsletter, blog posts &amp; essays</span>
+                </div>
+              </div>
+              <span class="link-chevron">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 5a1 1 0 0 1 1.707-.707l6 6a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 9 17.293L14.293 12 9 6.707A1 1 0 0 1 9 5z"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Open to opportunities</span>
+          </div>
+          <div>
+            <span>Built with</span>
+            <span> HTML&nbsp;• CSS&nbsp;• GitHub Pages</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
